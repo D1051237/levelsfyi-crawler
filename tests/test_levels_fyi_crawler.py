@@ -1,15 +1,19 @@
 import unittest
 from unittest.mock import patch
-from levelsfyi_crawler import main_function
+from levelsfyi_crawler import __name__ as script_name
 
 class TestLevelsFYICrawler(unittest.TestCase):
 
     @patch('builtins.input', side_effect=['d', 'max_tc', 'exit'])
-    def test_main_function(self, mock_input):
+    @patch(f'{script_name}.open', create=True)
+    def test_script_execution(self, mock_open, mock_input):
 
-        result = main_function()
+        with self.assertRaises(SystemExit) as cm:
 
-        self.assertEqual(result, expected_result)
+            with open('levelsfyi_crawler.py') as script:
+                exec(script.read())
+
+        self.assertEqual(cm.exception.code, 0)
 
 if __name__ == '__main__':
     unittest.main()
