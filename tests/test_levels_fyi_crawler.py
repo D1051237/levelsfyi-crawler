@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from levelsfyi-crawler import levels_fyi_crawler 
+import levels_fyi_crawler 
 
 class TestLevelsFYICrawler(unittest.TestCase):
 
