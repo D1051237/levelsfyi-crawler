@@ -30,6 +30,7 @@ jobs:
     
     - name: Install dependencies
       run: |
+        set | grep TERM
         python -m pip install --upgrade pip
         pip install selenium pandas bs4 requests matplotlib openpyxl
         pip install coverage
